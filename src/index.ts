@@ -80,12 +80,7 @@ function message(text: string): string {
 function postUser(req: any, res: any): void {
   let data = '';
   req.on('data', (chunk: any) => {
-    try {
-      data += chunk;
-    } catch (e) {
-      res.statusCode = 500;
-      res.end(message('Error on the server side'));
-    }
+    data += chunk;
   });
   req.on('end', () => {
     try {
@@ -109,6 +104,10 @@ function postUser(req: any, res: any): void {
       res.statusCode = 500;
       res.end(message('Error on the server side'));
     }
+  });
+  req.on('error', () => {
+    res.statusCode = 500;
+    res.end(message('Error on the server side'));
   });
 }
 
@@ -134,18 +133,13 @@ function putUser(req: any, res: any): void {
   const userIndex: number = users.findIndex((s: any) => s.id == id);
   let data = '';
   req.on('data', (chunk: any) => {
-    try {
-      data += chunk;
-    } catch (e) {
-      res.statusCode = 500;
-      res.end(message('Error on the server side'));
-    }
+    data += chunk;
   });
   req.on('end', () => {
     try {
       const varUser = JSON.parse(data);
       if (testInputUser(varUser)) {
-        users[userIndex].username = varUser.username;
+        users[userIndex].username = String(varUser.username);
         users[userIndex].age = Number(varUser.age);
         users[userIndex].hobbies = varUser.hobbies.map((s: any) => s + '');
         res.statusCode = 200;
@@ -158,6 +152,10 @@ function putUser(req: any, res: any): void {
       res.statusCode = 500;
       res.end(message('Error on the server side'));
     }
+  });
+  req.on('error', () => {
+    res.statusCode = 500;
+    res.end(message('Error on the server side'));
   });
 }
 
