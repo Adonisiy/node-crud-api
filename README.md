@@ -2,11 +2,10 @@
 
 ### Installation
 
-1. Fork the repository
-2. Clone repository to your computer (add `git clone !https://github.com/Adonisiy/node-crud-api.git`)
-3. Go to cloned repository folder (add `cd node-crud-api`)
-4. Choose branch "workbranch" (add `git checkout workbranch`)
-5. Install additional package (add `npm install`)
+1. Clone repository to your computer (add `git clone !https://github.com/Adonisiy/node-crud-api.git`)
+2. Go to cloned repository folder (add `cd node-crud-api`)
+3. Choose branch "workbranch" (add `git checkout workbranch`)
+4. Install additional package (add `npm install`)
 
 ### Launch
 
